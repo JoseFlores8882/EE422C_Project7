@@ -11,7 +11,6 @@ public class AuctionItem implements Serializable {
 	private String userId;
 	private Double currentPrice;
 	private Double buyPrice;
-	private String buyPriceString;
 	private String timeLeft;
 	private int secondsLeft;
 	private boolean expired;
@@ -24,6 +23,34 @@ public class AuctionItem implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Double getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(Double buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+
+	public int getSecondsLeft() {
+		return secondsLeft;
+	}
+
+	public void setSecondsLeft(int secondsLeft) {
+		this.secondsLeft = secondsLeft;
+	}
+
+	public Image getItemPicture() {
+		return itemPicture;
+	}
+
+	public void setItemPicture(Image itemPicture) {
+		this.itemPicture = itemPicture;
+	}
+
+	public void setCurrentPrice(Double currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 
 	public String getUserId() {
@@ -71,7 +98,6 @@ public class AuctionItem implements Serializable {
 		this.name = name;
 		this.currentPrice = price;
 		this.buyPrice = buyPrice;
-		this.buyPriceString = Double.toString(this.buyPrice);
 		this.userId = "starter";				
 		this.timeLeft = "1d 00h 00s";   //one day default
 		this.secondsLeft = 86400;

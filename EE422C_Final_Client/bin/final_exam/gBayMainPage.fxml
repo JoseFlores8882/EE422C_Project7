@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_exam.gBayMainPageController">
+   <children>
+      <ScrollPane layoutX="14.0" layoutY="99.0" prefHeight="548.0" prefWidth="557.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="675.0" prefWidth="541.0">
+               <children>
+                  <TableView fx:id="itemDisplay" onMouseClicked="#itemClicked" prefHeight="915.0" prefWidth="541.0">
+                    <columns>
+                      <TableColumn fx:id="itemName" prefWidth="231.0" text="Auction Item" />
+                        <TableColumn fx:id="itemCurrentBid" minWidth="0.0" prefWidth="171.0" text="Current Bid" />
+                        <TableColumn fx:id="itemTimeRemaining" minWidth="0.0" prefWidth="138.0" text="Time Remaining" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="331.0" layoutY="7.0" prefHeight="85.0" prefWidth="128.0" text="gBay!">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewItem" layoutX="590.0" layoutY="99.0" mnemonicParsing="false" onAction="#viewItemDetails" prefHeight="85.0" prefWidth="183.0" text="Item Details" />
+      <Button fx:id="viewBids" layoutX="590.0" layoutY="199.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="My Bids" />
+      <Button fx:id="auctionItem" layoutX="590.0" layoutY="298.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="Start New Auction" />
+      <Button fx:id="viewMyAuctions" layoutX="590.0" layoutY="393.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="183.0" text="My Auctions" />
+      <Button fx:id="viewItem1" layoutX="590.0" layoutY="559.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="QUIT" />
+   </children>
+</AnchorPane>

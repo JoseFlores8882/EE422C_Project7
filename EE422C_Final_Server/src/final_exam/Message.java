@@ -6,18 +6,23 @@ import java.util.ArrayList;
 public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String request;
-	private ArrayList<String> items = new ArrayList<String>();
-	private ArrayList<Double> currentBids = new ArrayList<Double>();
 	private String itemDescription;
 	private String username;
 	private String password;
-	private String returnMessage; 
+	private String returnMessage;
+	private ArrayList<AuctionItem> itemList = new ArrayList<AuctionItem>();
+	 
 	
 	public Message(String request, String usr, String pass)
 	{
 		this.request = request;
 		this.username = usr;
 		this.password = pass;
+	}
+	
+	public Message(String request)
+	{
+		this.request = request;
 	}
 	
 	//getters and setters
@@ -36,22 +41,14 @@ public class Message implements Serializable {
 	}
 	
 	
-	public ArrayList<String> getItems() {
-		return items;
+	public ArrayList<AuctionItem> getItemList() {
+		return itemList;
 	}
-	public void setItems(ArrayList<String> items) {
-		this.items = items;
+
+	public void setItemList(ArrayList<AuctionItem> itemList) {
+		this.itemList = itemList;
 	}
-	
-	
-	public ArrayList<Double> getCurrentBids() {
-		return currentBids;
-	}
-	public void setCurrentBids(ArrayList<Double> currentBids) {
-		this.currentBids = currentBids;
-	}
-	
-	
+
 	public String getItemDescription() {
 		return itemDescription;
 	}

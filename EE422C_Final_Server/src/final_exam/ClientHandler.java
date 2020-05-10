@@ -36,6 +36,15 @@ public class ClientHandler extends Thread {
 					}
 					clientOutput.writeObject(clientMessage);
 				}
+				else if(request.contentEquals("initialize List"))
+				{
+					ArrayList<AuctionItem> items = new ArrayList<AuctionItem>();
+					for(int i=0;i < Server.globalList.size();i++) {
+						items.add(Server.globalList.get(i));
+					}
+					clientMessage.setItemList(items);
+					clientOutput.writeObject(clientMessage);
+				}
 				//TODO:else if...
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
