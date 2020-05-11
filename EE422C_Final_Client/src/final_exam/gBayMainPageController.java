@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 public class gBayMainPageController implements Initializable {
 
+	private String userId;
 	@FXML private TableView<AuctionItem> itemDisplay;
 	@FXML private TableColumn<AuctionItem,String> itemName;
 	@FXML private TableColumn<AuctionItem,String> itemTimeRemaining;
@@ -30,13 +31,19 @@ public class gBayMainPageController implements Initializable {
 	@FXML private Button viewBids;
 	@FXML private Button auctionItem;
 	@FXML private Button viewMyAuctions;
+	@FXML private Button quitButton;
+	
+	public void initItem(String id) {
+		this.userId = id;
+		viewItem.setDisable(true);
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		itemName.setCellValueFactory(new PropertyValueFactory<AuctionItem,String>("name"));
-		itemTimeRemaining.setCellValueFactory(new PropertyValueFactory<AuctionItem,String>("timeLeft"));
-		//itemBuyPrice.setCellValueFactory(new PropertyValueFactory<AuctionItem,Double>("buyPrice"));
 		itemCurrentBid.setCellValueFactory(new PropertyValueFactory<AuctionItem,Double>("currentPrice"));
+		//itemBuyPrice.setCellValueFactory(new PropertyValueFactory<AuctionItem,Double>("buyPrice"));
+		itemTimeRemaining.setCellValueFactory(new PropertyValueFactory<AuctionItem,String>("timeLeft"));
 		Message request = new Message("initialize List");
 		try {
 			Client.toServer.writeObject(request);
@@ -63,7 +70,7 @@ public class gBayMainPageController implements Initializable {
 		//pass the selected auction item to details scene
         AuctionScreenController controller = loader.getController(); 
         AuctionItem XD = itemDisplay.getSelectionModel().getSelectedItem();
-        controller.initItem(XD);
+        controller.initItem(XD, userId);
         
         //set next scene
         Scene mainPageScene = new Scene(mainPageParent);
@@ -73,5 +80,7 @@ public class gBayMainPageController implements Initializable {
 		
 	}
 	
-	
+	public void quitButtonPushed(ActionEvent action) {
+		System.exit(1);
+	}
 }

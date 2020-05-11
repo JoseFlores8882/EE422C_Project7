@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.fxml.Initializable;
 
 public class LoginGUIController implements Initializable {
 
@@ -23,6 +22,7 @@ public class LoginGUIController implements Initializable {
 	@FXML private TextField username;
 	@FXML private PasswordField password;
 	@FXML private Label loginOut;
+	@FXML private Button newUserButton;
 	
 	//main page fields
 	
@@ -43,12 +43,32 @@ public class LoginGUIController implements Initializable {
 			return;
 		}
 		else {
-			Parent mainPageParent = FXMLLoader.load(getClass().getResource("gBayMainPage.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("gBayMainPage.fxml"));
+			Parent mainPageParent = loader.load();
+	        
+			//pass the Id to details scene
+	        gBayMainPageController controller = loader.getController(); 
+	        controller.initItem(usr);
+	        
+	        //set next scene
 	        Scene mainPageScene = new Scene(mainPageParent);
 	        Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
 	        window.setScene(mainPageScene);
 	        window.show();
 		}
+	}
+	
+	public void newUserButtonPushed(ActionEvent action) throws IOException {
+		//load fxml file
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("newUserGUI.fxml"));
+		Parent mainPageParent = loader.load();
+		
+		Scene mainPageScene = new Scene(mainPageParent);
+        Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
+        window.setScene(mainPageScene);
+        window.show();
 	}
 
 }

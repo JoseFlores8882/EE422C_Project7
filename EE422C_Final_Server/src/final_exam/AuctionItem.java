@@ -11,19 +11,57 @@ public class AuctionItem implements Serializable {
 	private String userId;
 	private Double currentPrice;
 	private Double buyPrice;
-	private String buyPriceString;
 	private String timeLeft;
 	private int secondsLeft;
 	private boolean expired;
 	private ArrayList<String> bidHistory = new ArrayList<String>();
+	private String description;
 	private Image itemPicture;
 	//getters and setters
+	
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(Double buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+
+	public int getSecondsLeft() {
+		return secondsLeft;
+	}
+
+	public void setSecondsLeft(int secondsLeft) {
+		this.secondsLeft = secondsLeft;
+	}
+
+	public Image getItemPicture() {
+		return itemPicture;
+	}
+
+	public void setItemPicture(Image itemPicture) {
+		this.itemPicture = itemPicture;
+	}
+
+	public void setCurrentPrice(Double currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 
 	public String getUserId() {
@@ -42,14 +80,17 @@ public class AuctionItem implements Serializable {
 		this.currentPrice = currentPrice;
 	}
 
-	public String getTimeLeft() {
+	public String updateTimeLeft() {
+		int days = secondsLeft/86400;
+		int hours = (secondsLeft/3600)%24;
+		int seconds = secondsLeft%60;
+		this.timeLeft = days + "d " + hours + "h " + seconds +"s";
 		return timeLeft;
 	}
 
-	public void setTimeLeft(String timeLeft) {
-		this.timeLeft = timeLeft;
+	public String getTimeLeft() {
+		return timeLeft;
 	}
-
 	public boolean isExpired() {
 		return expired;
 	}
@@ -66,15 +107,15 @@ public class AuctionItem implements Serializable {
 		this.bidHistory = bidHistory;
 	}
 
-	public AuctionItem(String name, double price, double buyPrice)
+	public AuctionItem(String name, double price, double buyPrice, String description)
 	{
 		this.name = name;
 		this.currentPrice = price;
 		this.buyPrice = buyPrice;
-		this.buyPriceString = Double.toString(this.buyPrice);
 		this.userId = "starter";				
 		this.timeLeft = "1d 00h 00s";   //one day default
 		this.secondsLeft = 86400;
 		this.expired = false;
+		this.description = description;
 	}
 }

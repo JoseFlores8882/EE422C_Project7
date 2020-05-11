@@ -15,14 +15,25 @@ public class AuctionItem implements Serializable {
 	private int secondsLeft;
 	private boolean expired;
 	private ArrayList<String> bidHistory = new ArrayList<String>();
+	private String description;
 	private Image itemPicture;
 	//getters and setters
+	
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Double getBuyPrice() {
@@ -69,14 +80,17 @@ public class AuctionItem implements Serializable {
 		this.currentPrice = currentPrice;
 	}
 
-	public String getTimeLeft() {
+	public String updateTimeLeft() {
+		int days = secondsLeft/86400;
+		int hours = (secondsLeft/3600)%24;
+		int seconds = secondsLeft%60;
+		this.timeLeft = days + "d " + hours + "h " + seconds +"s";
 		return timeLeft;
 	}
 
-	public void setTimeLeft(String timeLeft) {
-		this.timeLeft = timeLeft;
+	public String getTimeLeft() {
+		return timeLeft;
 	}
-
 	public boolean isExpired() {
 		return expired;
 	}
@@ -93,7 +107,7 @@ public class AuctionItem implements Serializable {
 		this.bidHistory = bidHistory;
 	}
 
-	public AuctionItem(String name, double price, double buyPrice)
+	public AuctionItem(String name, double price, double buyPrice, String description)
 	{
 		this.name = name;
 		this.currentPrice = price;
@@ -102,5 +116,6 @@ public class AuctionItem implements Serializable {
 		this.timeLeft = "1d 00h 00s";   //one day default
 		this.secondsLeft = 86400;
 		this.expired = false;
+		this.description = description;
 	}
 }

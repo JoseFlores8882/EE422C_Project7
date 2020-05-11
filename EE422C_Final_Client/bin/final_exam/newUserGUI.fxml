@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="380.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_exam.NewUserGUIController">
+   <children>
+      <TextField fx:id="username" layoutX="228.0" layoutY="151.0" />
+      <PasswordField fx:id="pass1" layoutX="228.0" layoutY="190.0" />
+      <PasswordField fx:id="pass2" layoutX="228.0" layoutY="229.0" />
+      <Button fx:id="createButton" layoutX="415.0" layoutY="190.0" mnemonicParsing="false" onAction="#createButtonPushed" prefHeight="25.0" prefWidth="130.0" text="Create Account" />
+      <Label fx:id="textOut" layoutX="228.0" layoutY="270.0" text="Label" />
+      <Label layoutX="121.0" layoutY="194.0" text="Password: " />
+      <Label layoutX="121.0" layoutY="155.0" text="Username:" />
+      <Label layoutX="119.0" layoutY="233.0" text="Re-enter Password:" />
+      <Label alignment="CENTER" layoutX="149.0" layoutY="116.0" prefHeight="25.0" prefWidth="315.0" text="Create a new gBay! account" />
+      <Label alignment="CENTER" layoutX="232.0" layoutY="27.0" prefHeight="62.0" prefWidth="142.0" text="gBay!">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Button fx:id="quitButton" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="115.0" text="QUIT" />
+      <Button fx:id="backButton" layoutX="466.0" layoutY="314.0" mnemonicParsing="false" onAction="#backButtonPushed" prefHeight="52.0" prefWidth="115.0" text="BACK TO LOGIN" />
+   </children>
+</AnchorPane>

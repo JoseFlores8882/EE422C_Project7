@@ -45,6 +45,28 @@ public class ClientHandler extends Thread {
 					clientMessage.setItemList(items);
 					clientOutput.writeObject(clientMessage);
 				}
+				else if(request.contentEquals("New bid")) 
+				{
+					boolean bidSuccess = Server.makeBid(clientMessage.getItemName(),clientMessage.getNewBid(), clientMessage.getBidderId());
+					if(bidSuccess) {
+						clientMessage.setReturnMessage("success");
+					}
+					else {
+						clientMessage.setReturnMessage("failure");
+					}
+					clientOutput.writeObject(clientMessage);
+				}
+				else if(request.contentEquals("New user")) 
+				{
+					boolean createUserSuccess = Server.makeUser(clientMessage.getUsername(), clientMessage.getPassword());
+					if(createUserSuccess) {
+						clientMessage.setReturnMessage("success");
+					}
+					else {
+						clientMessage.setReturnMessage("failure");
+					}
+					clientOutput.writeObject(clientMessage);
+				}
 				//TODO:else if...
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
