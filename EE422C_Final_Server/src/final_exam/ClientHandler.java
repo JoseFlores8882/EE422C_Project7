@@ -73,6 +73,17 @@ public class ClientHandler extends Thread {
 					clientOutput.close();
 					return;
 				}
+				else if(request.contentEquals("buy now")) 
+				{
+					boolean buyNowSuccess = Server.buyNow(clientMessage.getItemName(), clientMessage.getBidderId());
+					if(buyNowSuccess) {
+						clientMessage.setReturnMessage("success");
+					}
+					else {
+						clientMessage.setReturnMessage("failure");
+					}
+					clientOutput.writeObject(clientMessage);
+				}
 				//TODO:else if...
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

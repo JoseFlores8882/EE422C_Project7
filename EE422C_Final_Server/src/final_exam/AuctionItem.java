@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 public class AuctionItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String name;
-	private String userId;
+	private String userId;	//this is who made it
 	private Double currentPrice;
 	private Double buyPrice;
 	private String timeLeft;
@@ -17,11 +17,20 @@ public class AuctionItem implements Serializable {
 	private ArrayList<String> bidHistory = new ArrayList<String>();
 	private String description;
 	private Image itemPicture;
+	private String purchaseId;
 	//getters and setters
 	
 	
 	public String getName() {
 		return name;
+	}
+
+	public String getPurchaseId() {
+		return purchaseId;
+	}
+
+	public void setPurchaseId(String purchaseId) {
+		this.purchaseId = purchaseId;
 	}
 
 	public void setName(String name) {

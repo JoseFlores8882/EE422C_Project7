@@ -81,6 +81,19 @@ public class Server {
 			return true;
 		}
 	}
+	
+	public static synchronized boolean buyNow(String itemName, String bidderId) {
+		for(int i=0;i < globalList.size();i++) {
+			AuctionItem item = new AuctionItem("temp", 0, 0, "temp");
+			item = globalList.get(i);
+			if(item.getName().contentEquals(itemName) && !item.isExpired()) {	//if item is not expired
+				item.setExpired(true);											//set as expired and write purchaser
+				item.setPurchaseId(bidderId);
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 

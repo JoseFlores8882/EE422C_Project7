@@ -60,7 +60,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="buyButton" layoutX="413.0" layoutY="846.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="BUY IT NOW" />
+      <Button fx:id="buyButton" layoutX="413.0" layoutY="846.0" mnemonicParsing="false" onAction="#buyButtonPushed" prefHeight="25.0" prefWidth="291.0" text="BUY IT NOW" />
       <Label fx:id="description" alignment="TOP_LEFT" layoutX="28.0" layoutY="572.0" prefHeight="171.0" prefWidth="676.0" text="Label">
          <font>
             <Font size="18.0" />

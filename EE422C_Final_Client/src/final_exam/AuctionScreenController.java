@@ -115,6 +115,22 @@ public class AuctionScreenController implements Initializable{
         window.show();
 	}
 	
+	public void buyButtonPushed(ActionEvent action) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("BuyPage.fxml"));
+		Parent mainPageParent = loader.load();
+        
+		//pass the Id to details scene
+        BuyPageController controller = loader.getController(); 
+        controller.initItem(this.userId, this.item);
+        
+        //set next scene
+        Scene mainPageScene = new Scene(mainPageParent);
+        Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
+        window.setScene(mainPageScene);
+        window.show();
+	}
+	
 	public void quitButtonPushed(ActionEvent action) throws IOException {
 		Message request = new Message("quit");
 		Client.toServer.writeObject(request);
