@@ -67,6 +67,12 @@ public class ClientHandler extends Thread {
 					}
 					clientOutput.writeObject(clientMessage);
 				}
+				else if(request.contentEquals("quit")) 
+				{
+					clientInput.close();
+					clientOutput.close();
+					return;
+				}
 				//TODO:else if...
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

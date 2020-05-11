@@ -115,7 +115,12 @@ public class AuctionScreenController implements Initializable{
         window.show();
 	}
 	
-	public void quitButtonPushed(ActionEvent action) {
+	public void quitButtonPushed(ActionEvent action) throws IOException {
+		Message request = new Message("quit");
+		Client.toServer.writeObject(request);
+		//TODO: close client observer thread
+		Client.toServer.close();
+		Client.fromServer.close();
 		System.exit(1);
 	}
 }

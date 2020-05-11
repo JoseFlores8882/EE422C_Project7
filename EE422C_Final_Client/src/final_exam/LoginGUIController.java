@@ -23,7 +23,7 @@ public class LoginGUIController implements Initializable {
 	@FXML private PasswordField password;
 	@FXML private Label loginOut;
 	@FXML private Button newUserButton;
-	
+	@FXML private Button quitButton;
 	//main page fields
 	
 	@Override
@@ -71,4 +71,12 @@ public class LoginGUIController implements Initializable {
         window.show();
 	}
 
+	public void quitButtonPushed(ActionEvent action) throws IOException {
+		Message request = new Message("quit");
+		Client.toServer.writeObject(request);
+		//TODO: close client observer thread
+		Client.toServer.close();
+		Client.fromServer.close();
+		System.exit(1);
+	}
 }

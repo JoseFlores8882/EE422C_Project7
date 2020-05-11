@@ -32,6 +32,7 @@ public class gBayMainPageController implements Initializable {
 	@FXML private Button auctionItem;
 	@FXML private Button viewMyAuctions;
 	@FXML private Button quitButton;
+	@FXML private Button logoutButton;
 	
 	public void initItem(String id) {
 		this.userId = id;
@@ -80,7 +81,24 @@ public class gBayMainPageController implements Initializable {
 		
 	}
 	
-	public void quitButtonPushed(ActionEvent action) {
+	public void logoutButtonPushed(ActionEvent action) throws IOException {
+		//load fxml file
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("LoginGUI.fxml"));
+		Parent mainPageParent = loader.load();
+			
+		Scene mainPageScene = new Scene(mainPageParent);
+		Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
+		window.setScene(mainPageScene);
+		window.show();
+	}
+	
+	public void quitButtonPushed(ActionEvent action) throws IOException {
+		Message request = new Message("quit");
+		Client.toServer.writeObject(request);
+		//TODO: close client observer thread
+		Client.toServer.close();
+		Client.fromServer.close();
 		System.exit(1);
 	}
 }

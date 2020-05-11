@@ -23,7 +23,7 @@
             <Font size="46.0" />
          </font>
       </Label>
-      <Button fx:id="quitButton" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="115.0" text="QUIT" />
+      <Button fx:id="quitButton" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="52.0" prefWidth="115.0" text="QUIT" />
       <Button fx:id="backButton" layoutX="466.0" layoutY="314.0" mnemonicParsing="false" onAction="#backButtonPushed" prefHeight="52.0" prefWidth="115.0" text="BACK TO LOGIN" />
    </children>
 </AnchorPane>

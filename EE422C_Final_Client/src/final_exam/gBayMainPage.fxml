@@ -34,6 +34,7 @@
       <Button fx:id="viewBids" layoutX="590.0" layoutY="199.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="My Bids" />
       <Button fx:id="auctionItem" layoutX="590.0" layoutY="298.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="Start New Auction" />
       <Button fx:id="viewMyAuctions" layoutX="590.0" layoutY="393.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="183.0" text="My Auctions" />
-      <Button fx:id="viewItem1" layoutX="590.0" layoutY="559.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="QUIT" />
+      <Button fx:id="quitButton" layoutX="690.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="49.0" prefWidth="86.0" text="QUIT" />
+      <Button fx:id="logoutButton" layoutX="590.0" layoutY="553.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="91.0" prefWidth="183.0" text="LOGOUT" />
    </children>
 </AnchorPane>

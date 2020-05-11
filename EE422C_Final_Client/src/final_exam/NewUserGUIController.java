@@ -23,6 +23,7 @@ public class NewUserGUIController implements Initializable {
 	@FXML private Button createButton;
 	@FXML private Button quitButton;
 	@FXML private Button backButton;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		textOut.setText("");
@@ -70,5 +71,14 @@ public class NewUserGUIController implements Initializable {
 		Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
 	    window.setScene(mainPageScene);
 	    window.show();
+	}
+	
+	public void quitButtonPushed(ActionEvent action) throws IOException {
+		Message request = new Message("quit");
+		Client.toServer.writeObject(request);
+		//TODO: close client observer thread
+		Client.toServer.close();
+		Client.fromServer.close();
+		System.exit(1);
 	}
 }

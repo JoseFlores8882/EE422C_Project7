@@ -21,5 +21,6 @@
          </font>
       </Label>
       <Label fx:id="loginOut" layoutX="181.0" layoutY="252.0" prefHeight="17.0" prefWidth="253.0" text="Label" />
+      <Button fx:id="quitButton" layoutX="389.0" layoutY="252.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="62.0" prefWidth="91.0" text="QUIT" />
    </children>
 </AnchorPane>
