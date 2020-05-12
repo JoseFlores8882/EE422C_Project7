@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.IllegalFormatException;
 import java.util.ResourceBundle;
 
@@ -26,6 +27,9 @@ public class AuctionScreenController implements Initializable{
 	@FXML private Button nextButton;
 	@FXML private Button prevButton;
 	@FXML private Button buyButton;
+	@FXML private Button refreshButton;
+	@FXML private Button descriptionButton;
+	@FXML private Button historyButton;
 	@FXML private TextField inputBid;
 	@FXML private Label currentBid;
 	@FXML private Label buyPrice;
@@ -33,6 +37,8 @@ public class AuctionScreenController implements Initializable{
 	@FXML private Label itemTitle;
 	@FXML private Label timeLeft;
 	@FXML private Label description;
+	@FXML private Label highBidder;
+	@FXML private Label auctioner;
 	@FXML private ImageView picture;
 
 	
@@ -40,14 +46,26 @@ public class AuctionScreenController implements Initializable{
 		this.userId = id;
 		this.item = displayItem;
 		this.currentBid.setText("$" + String.format("%.2f",item.getCurrentPrice()));
-		this.buyPrice.setText("$" + String.format("%.2f",item.getBuyPrice()));
+		if(buyPrice!=null) {
+			this.buyPrice.setText("$" + String.format("%.2f",item.getBuyPrice()));
+		}
+		else {
+			this.buyButton.setText("");
+			buyButton.setDisable(true);
+		}
 		this.timeLeft.setText(this.item.updateTimeLeft());
 		this.itemTitle.setText(this.item.getName());
 		this.description.setText(this.item.getDescription());
 		if(this.item.getItemPicture()!=null) {
 			this.picture.setImage(this.item.getItemPicture());
 		}
+		highBidder.setText(this.item.getPurchaseId());
+		auctioner.setText(this.item.getUserId());
 		this.inputBid.setText("0.00");
+		if(this.item.isExpired() || this.userId.contentEquals(this.item.getUserId())) {
+			bidButton.setDisable(true);
+			buyButton.setDisable(true);
+		}
 		
 	}
 	
@@ -134,9 +152,47 @@ public class AuctionScreenController implements Initializable{
 	public void quitButtonPushed(ActionEvent action) throws IOException {
 		Message request = new Message("quit");
 		Client.toServer.writeObject(request);
-		//TODO: close client observer thread
 		Client.toServer.close();
 		Client.fromServer.close();
 		System.exit(1);
+	}
+	
+	public void refreshButtonPushed(ActionEvent action) throws IOException, ClassNotFoundException {
+		Message request = new Message("update auction disp");
+		request.setItemName(this.item.getName());
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		AuctionItem item = returnMessage.getAuctionItem();
+		if(item.isExpired())
+		{
+			this.bidButton.setDisable(true);
+			this.buyButton.setDisable(true);
+		}
+		else {
+			this.timeLeft.setText(item.getTimeLeft());
+			this.currentBid.setText("$" + String.format("%.2f",item.getCurrentPrice()));
+			this.highBidder.setText(item.getPurchaseId());
+		}
+	}
+	
+	public void historyButtonPushed(ActionEvent action) throws IOException, ClassNotFoundException {
+		Message request = new Message("history");
+		request.setItemName(this.item.getName());
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		ArrayList<String> history = returnMessage.getAuctionItem().getBidHistory();
+		String msg = "History:\n";
+		for(int i=0;i < history.size();i++) {
+			msg += (history.get(i) + "\n");
+		}
+		description.setText(msg);
+	}
+	
+	public void descriptionButtonPushed(ActionEvent action) throws ClassNotFoundException, IOException {
+		Message request = new Message("description");
+		request.setItemName(this.item.getName());
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		description.setText(returnMessage.getAuctionItem().getDescription());
 	}
 }

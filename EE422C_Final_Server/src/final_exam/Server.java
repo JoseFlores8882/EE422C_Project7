@@ -7,7 +7,8 @@ import java.util.*;
 public class Server {
 	public static ArrayList<AuctionItem> globalList = new ArrayList<AuctionItem>();
 	public static HashMap<String,String> userMap = new HashMap<String, String>();
-	
+	public static HashMap<String,ArrayList<AuctionItem>> userAuctions = new HashMap<String,ArrayList<AuctionItem>>();
+	public static HashMap<String,ArrayList<AuctionItem>> userBids = new HashMap<String, ArrayList<AuctionItem>>();
 	public static void main(String[] args) throws IOException {
 		ServerSocket ss = new ServerSocket(100);
 		if(args.length < 6) {
@@ -31,6 +32,7 @@ public class Server {
 				ObjectInputStream in = new ObjectInputStream(newClient.getInputStream());
 				Thread t = new ClientHandler(newClient,in,out);
 				t.start();
+				
 			} 
 			catch(Exception e) 
 			{
@@ -61,8 +63,15 @@ public class Server {
 		for(int i=0;i < globalList.size();i++) {
 			AuctionItem item = new AuctionItem("temp", 0, 0, "temp");
 			item = globalList.get(i);
-			if(item.getName().contentEquals(itemName) && newBid > item.getCurrentPrice() && !item.isExpired()) {	//if item is not expired, and new bid is greater set new price
+			if(item.getName().contentEquals(itemName) && newBid > item.getCurrentPrice() && !item.isExpired() && !item.getUserId().contentEquals(bidderId)) {	//if item is not expired, and new bid is greater set new price
 				item.setCurrentPrice(newBid);															//set new bid
+				item.setPurchaseId(bidderId);
+				ArrayList<AuctionItem> userBid = userBids.get(bidderId);
+				if(userBid==null) {
+					userBid = new ArrayList<AuctionItem>();
+				}
+				userBid.add(item);
+				userBids.put(bidderId,userBid);
 				ArrayList<String> history = item.getBidHistory();										//add to history
 				history.add(bidderId+" bid $" + String.format("%.2f",item.getCurrentPrice()));
 				return true;
@@ -78,6 +87,10 @@ public class Server {
 		}
 		else {
 			userMap.put(username, password);
+			ArrayList<AuctionItem> newUserAuctions = new ArrayList<AuctionItem>();
+			ArrayList<AuctionItem> newUserBids = new ArrayList<AuctionItem>();
+			userAuctions.put(username, newUserAuctions);
+			userBids.put(username,newUserBids);
 			return true;
 		}
 	}
@@ -89,6 +102,8 @@ public class Server {
 			if(item.getName().contentEquals(itemName) && !item.isExpired()) {	//if item is not expired
 				item.setExpired(true);											//set as expired and write purchaser
 				item.setPurchaseId(bidderId);
+				item.setSecondsLeft(0);
+				item.updateTimeLeft();
 				return true;
 			}
 		}

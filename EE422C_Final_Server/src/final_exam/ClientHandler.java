@@ -43,6 +43,7 @@ public class ClientHandler extends Thread {
 						items.add(Server.globalList.get(i));
 					}
 					clientMessage.setItemList(items);
+					clientOutput.reset();
 					clientOutput.writeObject(clientMessage);
 				}
 				else if(request.contentEquals("New bid")) 
@@ -82,6 +83,64 @@ public class ClientHandler extends Thread {
 					else {
 						clientMessage.setReturnMessage("failure");
 					}
+					clientOutput.writeObject(clientMessage);
+				}
+				else if(request.contentEquals("update auction disp"))
+				{
+					String itemName = clientMessage.getItemName();
+					for(int i=0;i < Server.globalList.size();i++) {
+						if(itemName.contentEquals(Server.globalList.get(i).getName())) {
+							clientMessage.setReturnMessage("success");
+							clientMessage.setAuctionItem(Server.globalList.get(i));
+							clientOutput.reset();
+							clientOutput.writeObject(clientMessage);
+						}
+					}
+				}
+				else if(request.contentEquals("history") || request.contentEquals("description"))
+				{
+					String itemName = clientMessage.getItemName();
+					for(int i=0;i < Server.globalList.size();i++) {
+						if(itemName.contentEquals(Server.globalList.get(i).getName())) {
+							clientMessage.setReturnMessage("success");
+							clientMessage.setAuctionItem(Server.globalList.get(i));
+							clientOutput.reset();
+							clientOutput.writeObject(clientMessage);
+						}
+					}
+				}
+				else if(request.contentEquals("new item"))
+				{
+					AuctionItem newItem = clientMessage.getAuctionItem();
+					Server.globalList.add(newItem);
+					ArrayList<AuctionItem> userAuction = Server.userAuctions.get(newItem.getUserId());
+					if(userAuction==null) {
+						userAuction = new ArrayList<AuctionItem>();
+					}
+					userAuction.add(newItem);
+					Server.userAuctions.put(newItem.getUserId(),userAuction);
+					clientMessage.setReturnMessage("success");
+					clientOutput.reset();
+					clientOutput.writeObject(clientMessage);
+				}
+				else if(request.contentEquals("my bids"))
+				{
+					ArrayList<AuctionItem> userbid = Server.userBids.get(clientMessage.getUsername());
+					if(userbid==null) {
+						userbid = new ArrayList<AuctionItem>();
+					}
+					clientMessage.setItemList(userbid);
+					clientOutput.reset();
+					clientOutput.writeObject(clientMessage);
+				}
+				else if(request.contentEquals("my items"))
+				{
+					ArrayList<AuctionItem> userbid = Server.userAuctions.get(clientMessage.getUsername());
+					if(userbid==null) {
+						userbid = new ArrayList<AuctionItem>();
+					}
+					clientMessage.setItemList(userbid);
+					clientOutput.reset();
 					clientOutput.writeObject(clientMessage);
 				}
 				//TODO:else if...

@@ -13,6 +13,8 @@ public class Message implements Serializable {
 	private double newBid;
 	private String bidderId;
 	private String itemName;
+	private AuctionItem auctionItem;
+	private ArrayList<String> bidHistory;
 	private ArrayList<AuctionItem> itemList = new ArrayList<AuctionItem>();
 	
 	
@@ -29,20 +31,27 @@ public class Message implements Serializable {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//getters and setters
 	
 	public String getReturnMessage() {
 		return returnMessage;
 	}
+	public ArrayList<String> getBidHistory() {
+		return bidHistory;
+	}
+
+	public void setBidHistory(ArrayList<String> bidHistory) {
+		this.bidHistory = bidHistory;
+	}
+
+	public AuctionItem getAuctionItem() {
+		return auctionItem;
+	}
+
+	public void setAuctionItem(AuctionItem auctionItem) {
+		this.auctionItem = auctionItem;
+	}
+
 	public String getBidderId() {
 		return bidderId;
 	}

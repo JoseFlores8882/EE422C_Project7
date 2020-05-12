@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="623.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_exam.MakeItemGUIController">
+   <children>
+      <Button fx:id="makeButton" layoutX="770.0" layoutY="534.0" mnemonicParsing="false" onAction="#makeButtonPushed" prefHeight="75.0" prefWidth="130.0" text="Make Auction" />
+      <TextField fx:id="itemName" layoutX="138.0" layoutY="123.0" prefHeight="25.0" prefWidth="220.0" />
+      <TextField fx:id="description" layoutX="138.0" layoutY="167.0" prefHeight="129.0" prefWidth="220.0" />
+      <Label layoutX="61.0" layoutY="127.0" text="Item name:" />
+      <Label layoutX="61.0" layoutY="167.0" text="Description:" />
+      <Label layoutX="405.0" layoutY="14.0" text="gBay!">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label layoutX="138.0" layoutY="87.0" text="Enter item info:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="chooseImage" layoutX="678.0" layoutY="470.0" mnemonicParsing="false" onAction="#chooseImageButtonPushed" text="Choose image" />
+      <ImageView fx:id="picture" fitHeight="361.0" fitWidth="332.0" layoutX="558.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="errorOut" layoutX="136.0" layoutY="431.0" prefHeight="39.0" prefWidth="220.0" text="Label" />
+      <CheckBox fx:id="buy" layoutX="254.0" layoutY="353.0" mnemonicParsing="false" text="Buy It Now?" />
+      <TextField fx:id="days" layoutX="138.0" layoutY="389.0" prefHeight="25.0" prefWidth="92.0" />
+      <TextField fx:id="startBid" layoutX="138.0" layoutY="312.0" prefHeight="25.0" prefWidth="92.0" />
+      <TextField fx:id="startBuy" layoutX="138.0" layoutY="349.0" prefHeight="25.0" prefWidth="92.0" />
+      <Label layoutX="70.0" layoutY="316.0" text="Starting Bid:" />
+      <Label layoutX="42.0" layoutY="353.0" text="Buy It Now! Price:" />
+      <Label layoutX="14.0" layoutY="393.0" text="Auction Time (in days):" />
+      <Button fx:id="backButton" layoutX="16.0" layoutY="534.0" mnemonicParsing="false" onAction="#backButtonPushed" prefHeight="75.0" prefWidth="130.0" text="Back To Main" />
+      <Button fx:id="quitButton" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="39.0" prefWidth="65.0" text="QUIT" />
+   </children>
+</AnchorPane>

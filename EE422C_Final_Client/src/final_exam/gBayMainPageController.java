@@ -33,10 +33,13 @@ public class gBayMainPageController implements Initializable {
 	@FXML private Button viewMyAuctions;
 	@FXML private Button quitButton;
 	@FXML private Button logoutButton;
+	@FXML private Button refreshButton;
+	@FXML private Button makeItem;
 	
 	public void initItem(String id) {
 		this.userId = id;
 		viewItem.setDisable(true);
+		
 	}
 	
 	@Override
@@ -96,9 +99,47 @@ public class gBayMainPageController implements Initializable {
 	public void quitButtonPushed(ActionEvent action) throws IOException {
 		Message request = new Message("quit");
 		Client.toServer.writeObject(request);
-		//TODO: close client observer thread
 		Client.toServer.close();
 		Client.fromServer.close();
 		System.exit(1);
 	}
+	
+	public void refreshButtonPushed(ActionEvent action) throws IOException, ClassNotFoundException {
+		Message request = new Message("initialize List");
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		itemDisplay.setItems(FXCollections.observableArrayList(returnMessage.getItemList()));
+	}
+	
+	public void makeButtonPushed(ActionEvent action) throws IOException {
+		//load fxml file
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("MakeAuctionGUI.fxml"));
+		Parent mainPageParent = loader.load();
+		
+		MakeItemGUIController controller = loader.getController(); 
+        controller.init(this.userId);
+			
+		Scene mainPageScene = new Scene(mainPageParent);
+		Stage window = (Stage)((Node)action.getSource()).getScene().getWindow(); 	//get stage info
+		window.setScene(mainPageScene);
+		window.show();
+	}
+	
+	public void viewBidsButtonPushed(ActionEvent action) throws IOException, ClassNotFoundException {
+		Message request = new Message("my bids");
+		request.setUsername(userId);
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		itemDisplay.setItems(FXCollections.observableArrayList(returnMessage.getItemList()));
+	}
+	
+	public void viewMyItemsButtonPushed(ActionEvent action) throws IOException, ClassNotFoundException {
+		Message request = new Message("my items");
+		request.setUsername(userId);
+		Client.toServer.writeObject(request);
+		Message returnMessage = (Message) Client.fromServer.readObject();
+		itemDisplay.setItems(FXCollections.observableArrayList(returnMessage.getItemList()));
+	}
+
 }

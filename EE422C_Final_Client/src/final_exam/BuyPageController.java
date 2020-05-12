@@ -31,6 +31,7 @@ public class BuyPageController implements Initializable  {
 		this.userId = username;
 		this.item = buyItem;
 		this.itemName.setText(buyItem.getName());
+		this.errorOut.setText("");
 	}
 	
 	@Override

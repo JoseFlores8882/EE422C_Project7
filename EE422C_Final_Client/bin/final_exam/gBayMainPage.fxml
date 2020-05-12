@@ -31,10 +31,11 @@
          </font>
       </Label>
       <Button fx:id="viewItem" layoutX="590.0" layoutY="99.0" mnemonicParsing="false" onAction="#viewItemDetails" prefHeight="85.0" prefWidth="183.0" text="Item Details" />
-      <Button fx:id="viewBids" layoutX="590.0" layoutY="199.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="My Bids" />
-      <Button fx:id="auctionItem" layoutX="590.0" layoutY="298.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="183.0" text="Start New Auction" />
-      <Button fx:id="viewMyAuctions" layoutX="590.0" layoutY="393.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="183.0" text="My Auctions" />
+      <Button fx:id="viewBids" layoutX="590.0" layoutY="199.0" mnemonicParsing="false" onAction="#viewBidsButtonPushed" prefHeight="85.0" prefWidth="183.0" text="My Bids" />
+      <Button fx:id="auctionItem" layoutX="590.0" layoutY="298.0" mnemonicParsing="false" onAction="#makeButtonPushed" prefHeight="85.0" prefWidth="183.0" text="Start New Auction" />
+      <Button fx:id="viewMyAuctions" layoutX="590.0" layoutY="393.0" mnemonicParsing="false" onAction="#viewMyItemsButtonPushed" prefHeight="91.0" prefWidth="183.0" text="My Auctions" />
       <Button fx:id="quitButton" layoutX="690.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="49.0" prefWidth="86.0" text="QUIT" />
       <Button fx:id="logoutButton" layoutX="590.0" layoutY="553.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="91.0" prefWidth="183.0" text="LOGOUT" />
+      <Button fx:id="refreshButton" layoutX="590.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshButtonPushed" prefHeight="49.0" prefWidth="86.0" text="REFRESH" />
    </children>
 </AnchorPane>

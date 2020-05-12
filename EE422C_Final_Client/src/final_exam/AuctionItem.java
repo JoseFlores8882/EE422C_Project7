@@ -123,8 +123,29 @@ public class AuctionItem implements Serializable {
 		this.buyPrice = buyPrice;
 		this.userId = "starter";				
 		this.timeLeft = "1d 00h 00s";   //one day default
+		this.purchaseId = "";
 		this.secondsLeft = 86400;
 		this.expired = false;
 		this.description = description;
 	}
+	public AuctionItem(String name, String userId, double price, double buyPrice, String description, int days)
+	{
+		this.name = name;
+		this.userId = userId;
+		this.currentPrice = price;
+		this.buyPrice = buyPrice;
+		this.description = description;
+		this.secondsLeft = days * 86400;
+		this.timeLeft = days + "d 00h 00s";
+	}
+	public AuctionItem(String name, String userId, double price, String description, int days)
+	{
+		this.name = name;
+		this.userId = userId;
+		this.currentPrice = price;
+		this.description = description;
+		this.secondsLeft = days * 86400;
+		this.timeLeft = days + "d 00h 00s";
+	}
+	
 }

@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="880.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_exam.AuctionScreenController">
+<AnchorPane prefHeight="936.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="final_exam.AuctionScreenController">
    <children>
       <Button fx:id="bidButton" layoutX="591.0" layoutY="762.0" mnemonicParsing="false" onAction="#bidButtonPushed" prefHeight="52.0" prefWidth="113.0" text="BID" />
       <ImageView fx:id="picture" fitHeight="450.0" fitWidth="676.0" layoutX="28.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="prevButton" layoutX="327.0" layoutY="531.0" mnemonicParsing="false" text="Prev" />
       <Button fx:id="nextButton" layoutX="366.0" layoutY="531.0" mnemonicParsing="false" text="Next" />
-      <Label fx:id="itemTitle" alignment="CENTER" layoutX="132.0" layoutY="14.0" prefHeight="46.0" prefWidth="469.0" text="Label">
+      <Label fx:id="itemTitle" alignment="CENTER" layoutX="215.0" layoutY="14.0" prefHeight="46.0" prefWidth="299.0" text="Label">
          <font>
-            <Font size="31.0" />
+            <Font size="22.0" />
          </font>
       </Label>
       <Button fx:id="backButton" layoutX="28.0" layoutY="764.0" mnemonicParsing="false" onAction="#backButtonPushed" prefHeight="107.0" prefWidth="113.0" text="BACK TO MAIN" />
@@ -61,11 +61,34 @@
          </font>
       </Label>
       <Button fx:id="buyButton" layoutX="413.0" layoutY="846.0" mnemonicParsing="false" onAction="#buyButtonPushed" prefHeight="25.0" prefWidth="291.0" text="BUY IT NOW" />
-      <Label fx:id="description" alignment="TOP_LEFT" layoutX="28.0" layoutY="572.0" prefHeight="171.0" prefWidth="676.0" text="Label">
+      <Label fx:id="description" alignment="TOP_LEFT" layoutX="28.0" layoutY="572.0" prefHeight="186.0" prefWidth="676.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="quitButton" layoutX="628.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="46.0" prefWidth="87.0" text="QUIT" />
+      <Button fx:id="quitButton" layoutX="616.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonPushed" prefHeight="46.0" prefWidth="99.0" text="QUIT" />
+      <Button fx:id="refreshButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshButtonPushed" prefHeight="46.0" prefWidth="99.0" text="REFRESH" />
+      <Label layoutX="152.0" layoutY="871.0" text="Highest bidder: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="152.0" layoutY="846.0" text="For sale by:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="auctioner" layoutX="251.0" layoutY="849.0" prefHeight="17.0" prefWidth="75.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="highBidder" layoutX="251.0" layoutY="871.0" prefHeight="17.0" prefWidth="75.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="descriptionButton" layoutX="115.0" layoutY="14.0" mnemonicParsing="false" onAction="#descriptionButtonPushed" prefHeight="46.0" prefWidth="99.0" text="DESCRIPTION" />
+      <Button fx:id="historyButton" layoutX="515.0" layoutY="14.0" mnemonicParsing="false" onAction="#historyButtonPushed" prefHeight="46.0" prefWidth="99.0" text="HISTORY" />
    </children>
 </AnchorPane>
